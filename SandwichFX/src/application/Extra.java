@@ -1,9 +1,16 @@
 package application;
 
 public class Extra {
+	
 	private String name;
 	
-	public Extra() {
-		
+	public Extra(String name) {
+		this.name = name;
 	}
+	
+	public String getName() {
+		return this.name;
+	}
+	
+	
 }
