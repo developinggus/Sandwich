@@ -1,3 +1,7 @@
+/**
+ * This class handles the beef sandwich for our order platform.
+ * @author Joseph Hawkins, Gustavo Garcia
+ */
 package application;
 
 public class Beef extends Sandwich {
