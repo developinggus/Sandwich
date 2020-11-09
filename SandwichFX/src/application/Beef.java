@@ -8,14 +8,28 @@ public class Beef extends Sandwich {
 	
 	private String ingredients = 
 			"Roast Beef,"
-			+ "Spicy Sauce,"
-			+ "Pickles";
+			+ "Provolone Cheese,"
+			+ "Mustard";
 	
+	/**
+	 * Constructor for Beef sandwich
+	 */
+	public Beef() {
+		
+	}
+	/**
+ 	* Calculates the price of the sandwich.
+ 	* @return The price of the sandwich
+ 	*/
 	@Override
 	public double price(){
 		return 10.99 + (extras.size() * PER_EXTRA);
 	}
 	
+	/**
+	 * Creates a string of the ingredients
+	 * @return returns the string that was created
+	 */ 
 	@Override
 	public String toString() {
 		for (int i = 0; i < extras.size(); i++) {
@@ -24,6 +38,10 @@ public class Beef extends Sandwich {
 		return ingredients;
 	}
 	
+	/**
+	 * Adds an extra to the sandwich
+	 * @return returns true if successful
+	 */
 	@Override
 	public boolean add(Object obj) {
 		if (obj instanceof Extra) {
@@ -34,6 +52,10 @@ public class Beef extends Sandwich {
 		return false;
 	}
 	
+	/**
+	 * Removes an extra from the sandwich
+	 * @return returns true if successful
+	 */
 	@Override
 	public boolean remove(Object obj) {
 		if (obj instanceof Extra) {

@@ -5,5 +5,9 @@ public class OrderLine {
 	private Sandwich sandwich;
 	private double price;
 	
-	public OrderLine() {}
+	public OrderLine(int lineNumber, Sandwich sandwich, double price) {
+		this.lineNumber = lineNumber;
+		this.sandwich = sandwich;
+		this.price = price;
+	}
 }

@@ -23,6 +23,12 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
+		Beef beef_patty = new Beef();
+		Extra bacon = new Extra("bacon");
+		beef_patty.add(bacon);
+		OrderLine order = new OrderLine(5,beef_patty,beef_patty.price()); 
+		Order wait_line = new Order();
+		wait_line.add(order);
 		launch(args);
 	}
 }
