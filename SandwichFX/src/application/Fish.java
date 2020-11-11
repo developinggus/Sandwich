@@ -13,7 +13,7 @@ public class Fish extends Sandwich {
 			+ "Lime";
 	
 	/**
-	 * Constructor for Beef sandwich
+	 * Constructor for Fish sandwich
 	 */
 	public Fish() {
 		

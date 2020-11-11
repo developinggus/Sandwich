@@ -13,7 +13,7 @@ public class Chicken extends Sandwich {
 			+ "Pickles";
 	
 	/**
-	 * Constructor for Beef sandwich
+	 * Constructor for Chicken sandwich
 	 */
 	public Chicken() {
 		
