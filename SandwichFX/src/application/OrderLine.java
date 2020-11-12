@@ -10,4 +10,8 @@ public class OrderLine {
 		this.sandwich = sandwich;
 		this.price = price;
 	}
+	
+	public int getLineNumber() {
+		return lineNumber;
+	}
 }
