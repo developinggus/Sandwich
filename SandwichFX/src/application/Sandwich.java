@@ -21,4 +21,44 @@ public abstract class Sandwich implements Customizable {
 		return "";
 	}
 	
+	/**
+	 * Adds an extra to the sandwich
+	 * @return returns true if successful
+	 */
+	@Override
+	public boolean add(Object obj) {
+		if (obj instanceof Extra) {
+			if (extras.size() == MAX_EXTRAS) {
+				return false;
+			}
+			Extra item =  (Extra) obj;
+			for (int i = 0; i < extras.size(); i++) { //Checks if the extra exists
+				if (extras.get(i).getName().equals(item.getName())) {
+					return false;
+				}
+			}
+			extras.add(item);
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Removes an extra from the sandwich
+	 * @return returns true if successful
+	 */
+	@Override
+	public boolean remove(Object obj) {
+		if (obj instanceof Extra) {
+			Extra item = (Extra) obj;
+			for (int i = 0; i < extras.size(); i++) {
+				if (extras.get(i).getName().equals(item.getName())) {
+					extras.remove(i);
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 }

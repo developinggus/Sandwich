@@ -15,6 +15,7 @@ public class Order implements Customizable {
 	 */
 	public Order() {
 		this.orderlines = new ArrayList<OrderLine>();
+		lineNumber = 1;
 	}
 	
 	/**
