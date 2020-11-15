@@ -114,15 +114,21 @@ public class PrimaryController {
     	}
     }
 
+    /**
+     * Remove extra ingredients from the sanwich.
+     * @param event pressing the remove button.
+     */
     @FXML
     void clearIngredients(ActionEvent event) {
-    	/* DOES NOT WORK IDK WHY
     	String[] addedIngredients_array = (String.join(", ", addedIngredients.getItems())).split(",");	//Converts listview to array
+    	addedIngredients.getItems().clear();
     	for (int i = 0; i < addedIngredients_array.length; i++) {
-    		addedIngredients.getItems().remove(addedIngredients_array[i]);
+    		//addedIngredients.clear();//getItems().remove(addedIngredients_array[i]);
     		extraIngredients.getItems().add(addedIngredients_array[i]);
     	}
-    	*/
+    	
+    	String sandwichPrice = "$" + String.format("%,.2f", sandwich.price());
+    	priceTextArea.setText(sandwichPrice);
  
     }
     
@@ -133,8 +139,8 @@ public class PrimaryController {
     	if (selected != null) {
     		addedIngredients.getItems().remove(selected);
     		extraIngredients.getItems().add(selected);
-    		String sandwichPrice = "$" + String.valueOf((sandwich.price()));
-    		priceTextArea.setText(sandwichPrice);
+        	String sandwichPrice = "$" + String.format("%,.2f", sandwich.price());
+        	priceTextArea.setText(sandwichPrice);
     	}
 
     }
