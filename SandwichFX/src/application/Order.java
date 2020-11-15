@@ -57,8 +57,25 @@ public class Order implements Customizable {
 		}
 		return false;
 	}
+
+	/**
+	 * Getter method for the lineNumber
+	 * @return the lineNumber for the orderLine
+	 */
+	public int getLineNumber() {
+		return lineNumber;
+	}
 	
+	/**
+	 * Getter method for returning the orders.
+	 * @return all sandwiches for this order.
+	 */
+	public ArrayList<OrderLine> getOrders(){
+		return this.orderlines;
+	}
+
 	public static void main(String[] args) {
+		/*
 		lineNumber = 5;
 		Beef beef_patty = new Beef();
 		Extra bacon = new Extra("bacon");
@@ -66,7 +83,8 @@ public class Order implements Customizable {
 		OrderLine order = new OrderLine(lineNumber,beef_patty,beef_patty.price()); 
 		Order wait_line = new Order();
 		lineNumber = 20;
-		System.out.print(order.getLineNumber());
+		//System.out.print(order.getLineNumber());
 		wait_line.add(order);
+		*/
 	}
 }

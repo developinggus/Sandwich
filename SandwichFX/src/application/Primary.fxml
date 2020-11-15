@@ -81,7 +81,9 @@
 					</rowConstraints>
 					<children>
 						<Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price $" textAlignment="CENTER" wrappingWidth="144.86376953125" />
-						<TextArea fx:id="priceTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+						<TextArea fx:id="priceTextArea" prefHeight="20.0" prefWidth="145.0" GridPane.rowIndex="1" />
+                  <Button mnemonicParsing="false" onAction="#AddSandwichButton" text="Add to Order" GridPane.rowIndex="2" />
+                  <Button layoutX="10.0" layoutY="120.0" mnemonicParsing="false" text="Show Order" GridPane.rowIndex="3" />
 					</children>
 				</GridPane>
 			</children>

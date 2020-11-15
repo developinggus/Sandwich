@@ -30,6 +30,8 @@ public class PrimaryController {
 	
 	Sandwich sandwich;
    
+	Order order = new Order();
+	
 	@FXML
     private ComboBox <String> sandwichType;
 	
@@ -195,4 +197,14 @@ public class PrimaryController {
     	}
     	return true;
 	}
+   
+	/**
+	 * Adds sandwich to order when button is pressed.
+	 * @param event button Add to Order is pressed.
+	 */
+	@FXML
+    void AddSandwichButton(ActionEvent event) {
+		OrderLine orderLine = new OrderLine(order.getLineNumber(), sandwich, sandwich.price());
+		order.add(orderLine);
+    }
 }
