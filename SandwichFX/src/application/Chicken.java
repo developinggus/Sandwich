@@ -5,6 +5,9 @@
 
 package application;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class Chicken extends Sandwich {
 	
 	private String ingredients = 
@@ -37,5 +40,16 @@ public class Chicken extends Sandwich {
 				ingredients = ingredients + "," + extras.get(i).getName();
 		}
 		return "Chicken Sandwich: " + ingredients + "," + String.format("%,.2f", price());
+	}
+	
+	/**
+	 * Puts the ingredients into an ObservableList.
+	 * @return Returns the list
+	 */
+	public ObservableList<String> getIngredients() {
+		String[] ingredients_string = ingredients.split(",");
+		ObservableList<String> list = FXCollections.observableArrayList
+				(ingredients_string);
+		return list;
 	}
 }
