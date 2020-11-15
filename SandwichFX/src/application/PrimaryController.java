@@ -1,6 +1,9 @@
 package application;
 
 import javafx.collections.FXCollections;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,7 +43,7 @@ public class PrimaryController {
     
     @FXML
     private TextArea priceTextArea;
-
+    
 
     @FXML
     void newSandwichSelected(ActionEvent event) {
@@ -48,18 +51,28 @@ public class PrimaryController {
     	String selection = sandwichType.getValue();
     	if(selection.equals("Chicken")) {
     		sandwich = new Chicken();
+    		Image im = new Image("https://cdn.cnn.com/cnnnext/dam/assets/200522115738-20200522-kfc-chicken-sandwich-super-tease.jpg");
+    		sandwichPic.setImage(im);
     	}
     	if(selection.equals("Fish")) {
     		sandwich = new Fish();
+    		Image im = new Image("https://showmars.com/img/menu/FishSandwich-675x456.png");
+    		sandwichPic.setImage(im);
     	}
     	if(selection.equals("Beef")) {
     		sandwich = new Beef();
+    		Image im = new Image("https://www.foxvalleyfoodie.com/wp-content/uploads/2018/01/arbys-roast-beef.jpg");
+    		sandwichPic.setImage(im);
     	}
     	
-    	for(int i = 0; i < addedIngredients.getCount(); i++) {
-    		//NEED TO LOOP THROUGHLIST VIEW CANT FIGURE IT OUT
+    	String[] addedIngredients_array = (String.join(", ", addedIngredients.getItems())).split(",");	//Converts listview to array
+    	
+    	for (int i = 0; i < addedIngredients_array.length; i++) {	//transfer extras onto the new sandwich
+    		Extra temp_extra = new Extra(addedIngredients_array[i]);
+    		sandwich.add(temp_extra);
     	}
-
+    	
+    	
     	priceTextArea.setText("$" + String.valueOf((sandwich.price())));
     	//change priceTextArea based on sandwich selected
     	
@@ -74,6 +87,9 @@ public class PrimaryController {
     
     @FXML
     void AddIngredients(ActionEvent event) {
+    	if (!validExtraIngredient()) {
+    		return;
+    	}
     	String selected = extraIngredients.getSelectionModel().getSelectedItem();
     	if (selected != null) {
     		extraIngredients.getItems().remove(selected);
@@ -86,7 +102,14 @@ public class PrimaryController {
 
     @FXML
     void clearIngredients(ActionEvent event) {
-    	
+    	/* DOES NOT WORK IDK WHY
+    	String[] addedIngredients_array = (String.join(", ", addedIngredients.getItems())).split(",");	//Converts listview to array
+    	for (int i = 0; i < addedIngredients_array.length; i++) {
+    		addedIngredients.getItems().remove(addedIngredients_array[i]);
+    		extraIngredients.getItems().add(addedIngredients_array[i]);
+    	}
+    	*/
+ 
     }
 
     @FXML
@@ -116,11 +139,27 @@ public class PrimaryController {
 					"Mushrooms", "Spinach", "Pickles", "Provolone", "American", "Swiss");
 		
 		extraIngredients.getItems().addAll(addOnToppings);
-		Image im = new Image("file:roast_beef.jpg");
+		Image im = new Image("https://cdn.cnn.com/cnnnext/dam/assets/200522115738-20200522-kfc-chicken-sandwich-super-tease.jpg");
 		sandwichPic.setImage(im);
 	}
 	
 	public void loadIngredients() {
 		
+	}
+	
+	/**
+	 * Checks if there is room to add an extra ingredient 
+	 * @return true if valid, false otherwise
+	 */
+	boolean validExtraIngredient() {
+        Alert a = new Alert(AlertType.NONE);
+        a.setAlertType(AlertType.ERROR); 
+        a.setContentText("CANNOT ADD MORE THAN 6 EXTRA INGREDIENTS!"); 
+    	String[] addedIngredients_array = (String.join(", ", addedIngredients.getItems())).split(",");	//Converts listview to array
+    	if ( addedIngredients_array.length == 6 ) {
+    		a.show();
+    		return false;
+    	}
+    	return true;
 	}
 }
