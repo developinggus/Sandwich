@@ -15,6 +15,7 @@ public class Order implements Customizable {
 	 */
 	public Order() {
 		this.orderlines = new ArrayList<OrderLine>();
+		lineNumber = 1;
 	}
 	
 	/**
@@ -43,15 +44,18 @@ public class Order implements Customizable {
 			OrderLine item = (OrderLine) obj;
 			for (int i = 0; i < orderlines.size(); i++) {
 				if (item.getLineNumber() == orderlines.get(i).getLineNumber()) {
-					//orderlines.remove(i);
-					//int removed_order_index = i;
-					//for (int j = i; j < orderlines.size(); j++) {
-						
-					//}
+					orderlines.remove(i);
+					for (int j = 0; j < orderlines.size(); j++) {
+						if (item.getLineNumber() > orderlines.get(j).getLineNumber()) {
+							orderlines.get(j).setLineNumber
+							((orderlines.get(j).getLineNumber()) - 1);
+						}
+					}
+					return true;
 				}
 			}
 		}
-		return true;
+		return false;
 	}
 	
 	public static void main(String[] args) {

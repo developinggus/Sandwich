@@ -4,7 +4,8 @@
  */
 
 package application;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 public class Fish extends Sandwich {
 	
 	private String ingredients = 
@@ -36,39 +37,18 @@ public class Fish extends Sandwich {
 		for (int i = 0; i < extras.size(); i++) {
 				ingredients = ingredients + "," + extras.get(i).getName();
 		}
-		return ingredients;
+		return "Fish Sandwich: " + ingredients + "," + String.format("%,.2f", price());
 	}
 	
 	/**
-	 * Adds an extra to the sandwich
-	 * @return returns true if successful
+	 * Puts the ingredients into an ObservableList.
+	 * @return Returns the list
 	 */
-	@Override
-	public boolean add(Object obj) {
-		if (obj instanceof Extra) {
-			Extra item =  (Extra) obj;
-			extras.add(item);
-			return true;
-		}
-		return false;
+	public ObservableList<String> getIngredients() {
+		String[] ingredients_string = ingredients.split(",");
+		ObservableList<String> list = FXCollections.observableArrayList
+				(ingredients_string);
+		return list;
 	}
 	
-	/**
-	 * Removes an extra from the sandwich
-	 * @return returns true if successful
-	 */
-	@Override
-	public boolean remove(Object obj) {
-		if (obj instanceof Extra) {
-			Extra item = (Extra) obj;
-			for (int i = 0; i < extras.size(); i++) {
-				String extra_name = extras.get(i).getName();
-				if (extra_name.equals(item.getName())) {
-					extras.remove(i);
-					return true;
-				}
-			}
-		}
-		return false;
-	}
 }
