@@ -120,7 +120,7 @@ public class PrimaryController {
      */
     @FXML
     void clearIngredients(ActionEvent event) {
-    	String[] addedIngredients_array = (String.join(", ", addedIngredients.getItems())).split(",");	//Converts listview to array
+    	String[] addedIngredients_array = (String.join(",", addedIngredients.getItems())).split(",");	//Converts listview to array
     	addedIngredients.getItems().clear();
     	for (int i = 0; i < addedIngredients_array.length; i++) {
     		//addedIngredients.clear();//getItems().remove(addedIngredients_array[i]);
@@ -140,6 +140,9 @@ public class PrimaryController {
     	String selected = addedIngredients.getSelectionModel().getSelectedItem();
     	if (selected != null) {
     		addedIngredients.getItems().remove(selected);
+    		Extra extra = new Extra(selected);
+    		sandwich.remove(extra);
+    		
     		extraIngredients.getItems().add(selected);
         	String sandwichPrice = "$" + String.format("%,.2f", sandwich.price());
         	priceTextArea.setText(sandwichPrice);
