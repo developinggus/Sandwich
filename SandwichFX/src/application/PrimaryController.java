@@ -55,6 +55,10 @@ public class PrimaryController {
     	if(selection.equals("Beef")) {
     		sandwich = new Beef();
     	}
+    	
+    	for(int i = 0; i < addedIngredients.getCount(); i++) {
+    		//NEED TO LOOP THROUGHLIST VIEW CANT FIGURE IT OUT
+    	}
 
     	priceTextArea.setText("$" + String.valueOf((sandwich.price())));
     	//change priceTextArea based on sandwich selected
@@ -71,8 +75,13 @@ public class PrimaryController {
     @FXML
     void AddIngredients(ActionEvent event) {
     	String selected = extraIngredients.getSelectionModel().getSelectedItem();
-    	extraIngredients.getItems().remove(selected);
-    	addedIngredients.getItems().add(selected);
+    	if (selected != null) {
+    		extraIngredients.getItems().remove(selected);
+    		addedIngredients.getItems().add(selected);
+    		Extra topping = new Extra(selected);
+    		sandwich.add(topping);
+    		priceTextArea.setText("$" + String.valueOf((sandwich.price())));
+    	}
     }
 
     @FXML
@@ -83,8 +92,11 @@ public class PrimaryController {
     @FXML
     void removeIngredients(ActionEvent event) {
     	String selected = addedIngredients.getSelectionModel().getSelectedItem();
-    	addedIngredients.getItems().remove(selected);
-    	extraIngredients.getItems().add(selected);
+    	if (selected != null) {
+    		addedIngredients.getItems().remove(selected);
+    		extraIngredients.getItems().add(selected);
+    		priceTextArea.setText("$" + String.valueOf((sandwich.price())));
+    	}
 
     }
     
