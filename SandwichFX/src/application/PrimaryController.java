@@ -89,10 +89,10 @@ public class PrimaryController {
 		sandwichType.setItems(sandwiches);
 		sandwich = new Chicken();
     	priceTextArea.setText("$" + String.valueOf((sandwich.price())));
-		
 		ingredients.addAll("Fried Chicken",
 				"Spicy Sauce",
 				"Pickles");
+		
 		ingredientListView.getItems().addAll(ingredients);
 
 		addOnToppings.addAll("Lettuce", "Tomatoes", "Onion", "Bacon",
