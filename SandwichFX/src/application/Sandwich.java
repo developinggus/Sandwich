@@ -1,3 +1,7 @@
+/**
+ * This class handles the abstract sandwich type which extends to different specific sandwiches.
+ * @author Joseph Hawkins, Gustavo Garcia
+ */
 package application;
 
 import java.util.ArrayList;
@@ -45,7 +49,7 @@ public abstract class Sandwich implements Customizable {
 	
 	/**
 	 * Removes an extra from the sandwich
-	 * @return returns true if successful
+	 * @return returns true if successful, false otherwise.
 	 */
 	@Override
 	public boolean remove(Object obj) {

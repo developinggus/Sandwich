@@ -1,3 +1,7 @@
+/**
+ * This class is the main controller.
+ * @author Joseph Hawkins, Gustavo Garcia
+ */
 package application;
 
 import javafx.collections.FXCollections;
@@ -44,11 +48,14 @@ public class PrimaryController {
     @FXML
     private TextArea priceTextArea;
     
-
+    /**
+     * Set new picture and create object when a different sandwich is chosen on the combo box.
+     * @param event a different sandwich is chosen on the combo box
+     */
     @FXML
     void newSandwichSelected(ActionEvent event) {
-    	//
     	String selection = sandwichType.getValue();
+    	//change image to URI instead of URL in-case the picture is taken down.
     	if(selection.equals("Chicken")) {
     		sandwich = new Chicken();
     		Image im = new Image("https://cdn.cnn.com/cnnnext/dam/assets/200522115738-20200522-kfc-chicken-sandwich-super-tease.jpg");
@@ -72,8 +79,9 @@ public class PrimaryController {
     		sandwich.add(temp_extra);
     	}
     	
-    	
-    	priceTextArea.setText("$" + String.valueOf((sandwich.price())));
+    	String sandwichPrice = "$" + String.format("%,.2f", sandwich.price());
+    	//String.valueOf((sandwich.price()))	
+    	priceTextArea.setText(sandwichPrice);
     	//change priceTextArea based on sandwich selected
     	
     }
@@ -85,6 +93,10 @@ public class PrimaryController {
     	
     }
     
+    /**
+     * Add extra ingredients to the sandwich object and handle price change.
+     * @param event pressing add button after selecting a topping.
+     */
     @FXML
     void AddIngredients(ActionEvent event) {
     	if (!validExtraIngredient()) {
@@ -96,7 +108,9 @@ public class PrimaryController {
     		addedIngredients.getItems().add(selected);
     		Extra topping = new Extra(selected);
     		sandwich.add(topping);
-    		priceTextArea.setText("$" + String.valueOf((sandwich.price())));
+        	String sandwichPrice = "$" + String.format("%,.2f", sandwich.price());
+        	//String.valueOf((sandwich.price()))	
+        	priceTextArea.setText(sandwichPrice);
     	}
     }
 
@@ -111,6 +125,7 @@ public class PrimaryController {
     	*/
  
     }
+    
 
     @FXML
     void removeIngredients(ActionEvent event) {
@@ -118,7 +133,8 @@ public class PrimaryController {
     	if (selected != null) {
     		addedIngredients.getItems().remove(selected);
     		extraIngredients.getItems().add(selected);
-    		priceTextArea.setText("$" + String.valueOf((sandwich.price())));
+    		String sandwichPrice = "$" + String.valueOf((sandwich.price()));
+    		priceTextArea.setText(sandwichPrice);
     	}
 
     }
@@ -143,9 +159,6 @@ public class PrimaryController {
 		sandwichPic.setImage(im);
 	}
 	
-	public void loadIngredients() {
-		
-	}
 	
 	/**
 	 * Checks if there is room to add an extra ingredient 

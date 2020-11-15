@@ -1,3 +1,7 @@
+/**
+ * This class runs all other classes.
+ * @author Joseph Hawkins, Gustavo Garcia
+ */
 package application;
 	
 import javafx.application.Application;
@@ -30,7 +34,7 @@ public class Main extends Application {
 		OrderLine order = new OrderLine(5,beef_patty,beef_patty.price()); 
 		Order wait_line = new Order();
 		wait_line.add(order);
-		System.out.println(beef_patty.toString());
+		//System.out.println(beef_patty.toString());
 		
 		
 		launch(args);
