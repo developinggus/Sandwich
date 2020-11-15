@@ -125,6 +125,8 @@ public class PrimaryController {
     	for (int i = 0; i < addedIngredients_array.length; i++) {
     		//addedIngredients.clear();//getItems().remove(addedIngredients_array[i]);
     		extraIngredients.getItems().add(addedIngredients_array[i]);
+    		Extra extra = new Extra(addedIngredients_array[i]);
+    		sandwich.remove(extra);
     	}
     	
     	String sandwichPrice = "$" + String.format("%,.2f", sandwich.price());
