@@ -76,12 +76,8 @@ public class PrimaryController {
 
     	}
     	
-
-    	String sandwichPrice = "$" + String.format("%,.2f", sandwich.price());
-    	priceTextArea.setText(sandwichPrice);
-
+    	adjustPrice();
     	clearIngredients();
-    	//change ingredients included
 
     }
     
@@ -89,7 +85,8 @@ public class PrimaryController {
      * Adjusts the price of a sandwich based on the current toppings.
      */
     void adjustPrice() {
-    	
+    	String sandwichPrice = "$" + String.format("%,.2f", sandwich.price());
+    	priceTextArea.setText(sandwichPrice);
     }
     
     
@@ -108,9 +105,7 @@ public class PrimaryController {
     		addedIngredients.getItems().add(selected);
     		Extra topping = new Extra(selected);
     		sandwich.add(topping);
-        	String sandwichPrice = "$" + String.format("%,.2f", sandwich.price());
-        	//String.valueOf((sandwich.price()))	
-        	priceTextArea.setText(sandwichPrice);
+    		adjustPrice();
     	}
     }
 
@@ -132,10 +127,7 @@ public class PrimaryController {
     		Extra extra = new Extra(addedIngredients_array[i]);
     		sandwich.remove(extra);
     	}
-    	    	
-    	String sandwichPrice = "$" + String.format("%,.2f", sandwich.price());
-    	priceTextArea.setText(sandwichPrice);
- 
+    	adjustPrice();
     }
       
     /**
@@ -157,11 +149,9 @@ public class PrimaryController {
     	if (selected != null) {
     		addedIngredients.getItems().remove(selected);
     		Extra extra = new Extra(selected);
-    		sandwich.remove(extra);
-    		
+    		sandwich.remove(extra);    		
     		extraIngredients.getItems().add(selected);
-        	String sandwichPrice = "$" + String.format("%,.2f", sandwich.price());
-        	priceTextArea.setText(sandwichPrice);
+    		adjustPrice();
     	}
 
     }
@@ -175,8 +165,7 @@ public class PrimaryController {
 		sandwichType.setValue("Chicken");
 		sandwichType.setItems(sandwiches);
 		sandwich = new Chicken();
-    	String sandwichPrice = "$" + String.format("%,.2f", sandwich.price());
-    	priceTextArea.setText(sandwichPrice);
+		adjustPrice();
 		ingredients.addAll("Fried Chicken",
 				"Spicy Sauce",
 				"Pickles");
