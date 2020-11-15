@@ -55,35 +55,34 @@ public class PrimaryController {
     @FXML
     void newSandwichSelected(ActionEvent event) {
     	String selection = sandwichType.getValue();
+    	sandwich = null;
     	//change image to URI instead of URL in-case the picture is taken down.
     	if(selection.equals("Chicken")) {
     		sandwich = new Chicken();
     		Image im = new Image("https://cdn.cnn.com/cnnnext/dam/assets/200522115738-20200522-kfc-chicken-sandwich-super-tease.jpg");
     		sandwichPic.setImage(im);
     	}
+    	
     	if(selection.equals("Fish")) {
     		sandwich = new Fish();
     		Image im = new Image("https://showmars.com/img/menu/FishSandwich-675x456.png");
     		sandwichPic.setImage(im);
     	}
+    	
     	if(selection.equals("Beef")) {
     		sandwich = new Beef();
     		Image im = new Image("https://www.foxvalleyfoodie.com/wp-content/uploads/2018/01/arbys-roast-beef.jpg");
     		sandwichPic.setImage(im);
+
     	}
     	
-    	String[] addedIngredients_array = (String.join(", ", addedIngredients.getItems())).split(",");	//Converts listview to array
-    	
-    	for (int i = 0; i < addedIngredients_array.length; i++) {	//transfer extras onto the new sandwich
-    		Extra temp_extra = new Extra(addedIngredients_array[i]);
-    		sandwich.add(temp_extra);
-    	}
-    	
+
     	String sandwichPrice = "$" + String.format("%,.2f", sandwich.price());
-    	//String.valueOf((sandwich.price()))	
     	priceTextArea.setText(sandwichPrice);
-    	//change priceTextArea based on sandwich selected
-    	
+
+    	clearIngredients();
+    	//change ingredients included
+
     }
     
     /**
@@ -92,6 +91,7 @@ public class PrimaryController {
     void adjustPrice() {
     	
     }
+    
     
     /**
      * Add extra ingredients to the sandwich object and handle price change.
@@ -114,27 +114,43 @@ public class PrimaryController {
     	}
     }
 
+    
     /**
-     * Remove extra ingredients from the sanwich.
-     * @param event pressing the remove button.
+     * Remove extra ingredients from the sandwich.
+     *
      */
-    @FXML
-    void clearIngredients(ActionEvent event) {
+    void clearIngredients() {
+    	
+    	if (addedIngredients.getItems().isEmpty()) {
+    		return;
+    	}
+    	
     	String[] addedIngredients_array = (String.join(",", addedIngredients.getItems())).split(",");	//Converts listview to array
     	addedIngredients.getItems().clear();
     	for (int i = 0; i < addedIngredients_array.length; i++) {
-    		//addedIngredients.clear();//getItems().remove(addedIngredients_array[i]);
     		extraIngredients.getItems().add(addedIngredients_array[i]);
     		Extra extra = new Extra(addedIngredients_array[i]);
     		sandwich.remove(extra);
     	}
-    	
+    	    	
     	String sandwichPrice = "$" + String.format("%,.2f", sandwich.price());
     	priceTextArea.setText(sandwichPrice);
  
     }
-    
+      
+    /**
+     * Remove extra ingredients from the sandwich.
+     * @param event pressing the remove button.
+     */
+    @FXML
+    void clearIngredientsButton(ActionEvent event) {
+    	clearIngredients();
+    }
 
+    /**
+     * Remove selected ingredient from extra ingredients on sandwich.
+     * @param event clicking remove button and selecting an extra.
+     */
     @FXML
     void removeIngredients(ActionEvent event) {
     	String selected = addedIngredients.getSelectionModel().getSelectedItem();
@@ -150,12 +166,17 @@ public class PrimaryController {
 
     }
     
-	@FXML
+	
+    /**
+     * Prepare main window with default values and images.
+     */
+    @FXML
 	public void initialize() {
 		sandwichType.setValue("Chicken");
 		sandwichType.setItems(sandwiches);
 		sandwich = new Chicken();
-    	priceTextArea.setText("$" + String.valueOf((sandwich.price())));
+    	String sandwichPrice = "$" + String.format("%,.2f", sandwich.price());
+    	priceTextArea.setText(sandwichPrice);
 		ingredients.addAll("Fried Chicken",
 				"Spicy Sauce",
 				"Pickles");
@@ -169,7 +190,6 @@ public class PrimaryController {
 		Image im = new Image("https://cdn.cnn.com/cnnnext/dam/assets/200522115738-20200522-kfc-chicken-sandwich-super-tease.jpg");
 		sandwichPic.setImage(im);
 	}
-	
 	
 	/**
 	 * Checks if there is room to add an extra ingredient 
