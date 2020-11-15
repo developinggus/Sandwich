@@ -70,16 +70,21 @@ public class PrimaryController {
     
     @FXML
     void AddIngredients(ActionEvent event) {
-
+    	String selected = extraIngredients.getSelectionModel().getSelectedItem();
+    	extraIngredients.getItems().remove(selected);
+    	addedIngredients.getItems().add(selected);
     }
 
     @FXML
     void clearIngredients(ActionEvent event) {
-
+    	
     }
 
     @FXML
     void removeIngredients(ActionEvent event) {
+    	String selected = addedIngredients.getSelectionModel().getSelectedItem();
+    	addedIngredients.getItems().remove(selected);
+    	extraIngredients.getItems().add(selected);
 
     }
     
@@ -98,7 +103,9 @@ public class PrimaryController {
 		addOnToppings.addAll("Lettuce", "Tomatoes", "Onion", "Bacon",
 					"Mushrooms", "Spinach", "Pickles", "Provolone", "American", "Swiss");
 		
-		//extraIngredients.getItems().addAll(addOnToppings);
+		extraIngredients.getItems().addAll(addOnToppings);
+		Image im = new Image("file:roast_beef.jpg");
+		sandwichPic.setImage(im);
 	}
 	
 	public void loadIngredients() {
