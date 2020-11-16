@@ -34,10 +34,11 @@ public class Fish extends Sandwich {
 	 */ 
 	@Override
 	public String toString() {
+		String new_ingredients = ingredients;
 		for (int i = 0; i < extras.size(); i++) {
-				ingredients = ingredients + "," + extras.get(i).getName();
+				new_ingredients = new_ingredients + "," + extras.get(i).getName();
 		}
-		return "Fish Sandwich: " + ingredients + "," + String.format("%,.2f", price());
+		return "Fish Sandwich: " + new_ingredients + "," + String.format("%,.2f", price());
 	}
 	
 	/**
