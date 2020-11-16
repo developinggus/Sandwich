@@ -12,9 +12,11 @@ import java.util.Collection;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -141,16 +143,27 @@ public class SecondaryController {
    */
   public void sameOrderLine(ActionEvent event) {
 	  String selected = orderSummary.getSelectionModel().getSelectedItem();
+	  if ( selected == null ) {
+	        Alert a = new Alert(AlertType.NONE);
+	        a.setAlertType(AlertType.ERROR);
+	        a.setContentText("Please select an item to add!");
+	        a.show();
+		  return;
+	  }
 	  String[] selected_array = selected.split(" ");
 
 	  for (int i = 0; i < order.size(); i++) {
 		  if ( order.get(i).getLineNumber() == Integer.parseInt(selected_array[0])) {
 			  OrderLine same_order = new OrderLine(order.size() + 1, order.get(i).getSandwich(), order.get(i).getPrice());
 			  primary.order.add(same_order);
-
+		      order = primary.order.getOrders();
+		    	//orderSummary.getItems().remo
+		      loadOrderListView();
+		      return;
 
 		  }
 	  }
+	  return;
 
   }
 

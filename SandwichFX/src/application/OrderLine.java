@@ -46,4 +46,19 @@ public class OrderLine {
 	public void setLineNumber(int n) {
 		this.lineNumber = n;
 	}
+	
+	/*
+	 * Returns the sandwich object
+	 */
+	public Sandwich getSandwich() {
+		return sandwich;
+	}
+	
+	/*
+	 * Return the price of order
+	 * @return price variable
+	 */
+	public double getPrice() {
+		return price;
+	}
 }

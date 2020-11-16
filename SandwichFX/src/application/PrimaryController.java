@@ -224,7 +224,6 @@ public class PrimaryController {
     void AddSandwichButton(ActionEvent event) {
 		OrderLine orderLine = new OrderLine(Order.lineNumber, sandwich, sandwich.price());
 		order.add(orderLine);
-		Order.lineNumber = Order.lineNumber + 1;
 		if(second != null) {
 			second.clearOrderSummary();
 			second.loadOrderListView();

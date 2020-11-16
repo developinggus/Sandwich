@@ -28,6 +28,7 @@ public class Order implements Customizable {
 		if (obj instanceof OrderLine) {
 			OrderLine item = (OrderLine) obj;
 			orderlines.add(item);
+			lineNumber++;
 			return true;
 		}
 		return false;
@@ -46,24 +47,17 @@ public class Order implements Customizable {
 				if (item.getLineNumber() == orderlines.get(i).getLineNumber()) {
 					orderlines.remove(i);
 					for (int j = 0; j < orderlines.size(); j++) {
-						if (item.getLineNumber() > orderlines.get(j).getLineNumber()) {
+						if (item.getLineNumber() < orderlines.get(j).getLineNumber()) {
 							orderlines.get(j).setLineNumber
 							((orderlines.get(j).getLineNumber()) - 1);
 						}
 					}
+					lineNumber--;
 					return true;
 				}
 			}
 		}
 		return false;
-	}
-
-	/**
-	 * Getter method for the lineNumber
-	 * @return the lineNumber for the orderLine
-	 */
-	public int getLineNumber() {
-		return lineNumber;
 	}
 	
 	/**
@@ -75,6 +69,5 @@ public class Order implements Customizable {
 	}
 
 	public static void main(String[] args) {
-		
 	}
 }
