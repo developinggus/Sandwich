@@ -37,7 +37,7 @@ public class SecondaryController {
      */
     @FXML
     void clearOrderButton(ActionEvent event) {
-
+    	
     }
 
     /**

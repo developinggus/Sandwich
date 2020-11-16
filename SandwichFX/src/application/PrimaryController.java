@@ -64,7 +64,6 @@ public class PrimaryController {
     	sandwich = null;
     	//change image to URI instead of URL in-case the picture is taken down.
     	if(selection.equals("Chicken")) {
-    		System.out.println("I FIRED\n");
     		sandwich = new Chicken();
     		Image im = new Image("https://cdn.cnn.com/cnnnext/dam/assets/200522115738-20200522-kfc-chicken-sandwich-super-tease.jpg");
     		sandwichPic.setImage(im);
@@ -215,6 +214,8 @@ public class PrimaryController {
 		OrderLine orderLine = new OrderLine(Order.lineNumber, sandwich, sandwich.price());
 		order.add(orderLine);
 		Order.lineNumber = Order.lineNumber + 1;
+		newSandwichSelected(event);
+		
     }
 	
 	/**
