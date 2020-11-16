@@ -274,7 +274,7 @@ public class PrimaryController {
     	    Parent root1 = (Parent) fxmlLoader.load();
     	    stage.setScene(new Scene(root1)); 
         	second = fxmlLoader.getController();
-        	second.initData(order.getOrders());
+        	second.initialize(order.getOrders(), this);
     	    stage.setTitle("Order Summary");
     	    stage.show();
     	    second.loadOrderListView();

@@ -42,6 +42,10 @@ public class SecondaryController {
     	this.primary = primary;
     }
     
+    public SecondaryController() {
+    	
+    }
+    
     /**
      * Clear order
      * @param event
@@ -92,8 +96,9 @@ public class SecondaryController {
      * Passing information back and forth between controllers.
      * @param orders sandwiches ordered by user on primary controller.
      */
-    public void initData(ArrayList<OrderLine> orders) {
+    public void initialize(ArrayList<OrderLine> orders, PrimaryController primary) {
     	order = orders;
+    	this.primary = primary;
     }
 
     /**
@@ -133,5 +138,8 @@ public class SecondaryController {
     	
         writer.close();
     }
+
+    //@FXML
+    private void initialize() {}
 }
 
