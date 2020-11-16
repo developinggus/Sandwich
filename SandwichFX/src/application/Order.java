@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Order implements Customizable {
 	public static int lineNumber;
 	private ArrayList<OrderLine> orderlines;
-	
+
 	/**
 	 * Constructor for Order. Creates a new ArrayList.
 	 */
@@ -17,9 +17,9 @@ public class Order implements Customizable {
 		this.orderlines = new ArrayList<OrderLine>();
 		lineNumber = 1;
 	}
-	
+
 	/**
-	 * Override of the abstract add() class. This will add the orderLine object to the 
+	 * Override of the abstract add() class. This will add the orderLine object to the
 	 * ArrayList
 	 * @return True if it is inserted, False otherwise
 	 */
@@ -28,12 +28,12 @@ public class Order implements Customizable {
 		if (obj instanceof OrderLine) {
 			OrderLine item = (OrderLine) obj;
 			orderlines.add(item);
-			lineNumber++;
+			lineNumber ++;
 			return true;
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Override of the abstract remove() class. Will remove the orderLine object
 	 * from the ArrayList and rearrange the LineNumbers so it stays in sequence.
@@ -41,6 +41,7 @@ public class Order implements Customizable {
 	 */
 	@Override
 	public boolean remove(Object obj) {
+		//I think this is decrementing elements below the target but not above
 		if (obj instanceof OrderLine) {
 			OrderLine item = (OrderLine) obj;
 			for (int i = 0; i < orderlines.size(); i++) {
@@ -52,14 +53,15 @@ public class Order implements Customizable {
 							((orderlines.get(j).getLineNumber()) - 1);
 						}
 					}
-					lineNumber--;
+					lineNumber --;
 					return true;
 				}
 			}
 		}
 		return false;
 	}
-	
+
+
 	/**
 	 * Getter method for returning the orders.
 	 * @return all sandwiches for this order.
