@@ -87,11 +87,12 @@ public class SecondaryController {
     		orderSummary.getItems().addAll("");
     		return;
     	}
-    	// this method isn't getting the correct order number.
+
     	Collection<String> tempOrders = new ArrayList<String>();
     	for(int i = 0; i < order.size(); i++) {
     		 tempOrders.add(order.get(i).toString());
     	}
+    	orderSummary.getItems().clear();
     	orderSummary.getItems().addAll(tempOrders);
 	}
 
@@ -123,7 +124,7 @@ public class SecondaryController {
     	Stage stage = new Stage();
     	File targetFile = chooser.showSaveDialog(stage);
     	if ( targetFile != null ) {
-    		try {
+    		try {		
     			PrintWriter writer;
     			writer = new PrintWriter(targetFile);
     			writeToFile(writer);
@@ -133,9 +134,9 @@ public class SecondaryController {
     	}
     	//export accounts database to a txt file
     }
-    
+
   /**
-   * Duplicates an order in order summary  
+   * Duplicates an order in order summary
    * @param event is the action of the button "Same order line"
    */
   public void sameOrderLine(ActionEvent event) {
@@ -146,11 +147,11 @@ public class SecondaryController {
 		  if ( order.get(i).getLineNumber() == Integer.parseInt(selected_array[0])) {
 			  OrderLine same_order = new OrderLine(order.size() + 1, order.get(i).getSandwich(), order.get(i).getPrice());
 			  primary.order.add(same_order);
-			  
-			  
+
+
 		  }
 	  }
-	  
+
   }
 
     /**
@@ -165,6 +166,23 @@ public class SecondaryController {
         }
 
         writer.close();
+    }
+
+    /**
+     * Remove the selected orderline.
+     * @param event clicked remove button.
+     */
+    @FXML
+    void removeOrderLine(ActionEvent event) {
+    	//what if nothing is selected??
+
+    	String selection = orderSummary.getSelectionModel().getSelectedItem();
+    	int lineNumber = Integer.parseInt(selection.split(" ")[0]);
+    	OrderLine orderline = new OrderLine(lineNumber, null, 0);
+    	primary.order.remove(orderline);
+    	order = primary.order.getOrders();
+    	//orderSummary.getItems().remo
+    	loadOrderListView();
     }
 
     //@FXML
