@@ -158,11 +158,13 @@ public class SecondaryController {
     	//what if nothing is selected??
     	
     	String selection = orderSummary.getSelectionModel().getSelectedItem();
+    	if(selection == null) {
+    		return;
+    	}
     	int lineNumber = Integer.parseInt(selection.split(" ")[0]);
     	OrderLine orderline = new OrderLine(lineNumber, null, 0);
     	primary.order.remove(orderline);
     	order = primary.order.getOrders();
-    	//orderSummary.getItems().remo
     	loadOrderListView();
     }
     

@@ -28,6 +28,7 @@ public class Order implements Customizable {
 		if (obj instanceof OrderLine) {
 			OrderLine item = (OrderLine) obj;
 			orderlines.add(item);
+			lineNumber ++;
 			return true;
 		}
 		return false;
@@ -40,17 +41,19 @@ public class Order implements Customizable {
 	 */
 	@Override
 	public boolean remove(Object obj) {
+		//I think this is decrementing elements below the target but not above
 		if (obj instanceof OrderLine) {
 			OrderLine item = (OrderLine) obj;
 			for (int i = 0; i < orderlines.size(); i++) {
 				if (item.getLineNumber() == orderlines.get(i).getLineNumber()) {
 					orderlines.remove(i);
 					for (int j = 0; j < orderlines.size(); j++) {
-						if (item.getLineNumber() > orderlines.get(j).getLineNumber()) {
+						if (item.getLineNumber() < orderlines.get(j).getLineNumber()) {
 							orderlines.get(j).setLineNumber
 							((orderlines.get(j).getLineNumber()) - 1);
 						}
 					}
+					lineNumber --;
 					return true;
 				}
 			}
@@ -58,13 +61,6 @@ public class Order implements Customizable {
 		return false;
 	}
 
-	/**
-	 * Getter method for the lineNumber
-	 * @return the lineNumber for the orderLine
-	 */
-	public int getLineNumber() {
-		return lineNumber;
-	}
 	
 	/**
 	 * Getter method for returning the orders.
