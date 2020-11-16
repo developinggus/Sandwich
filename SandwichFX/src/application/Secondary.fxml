@@ -42,7 +42,7 @@
             </Button>
             <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="130.0" text="- Remove order line" GridPane.columnIndex="1" />
             <Button fx:id="backButton" mnemonicParsing="false" onAction="#goBack" prefHeight="27.0" prefWidth="130.0" text="Back" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="130.0" text="Save Order to File" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#exportFile" prefHeight="27.0" prefWidth="130.0" text="Save Order to File" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                <children>
                   <GridPane>
