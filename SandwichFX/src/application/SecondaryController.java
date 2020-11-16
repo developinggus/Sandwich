@@ -50,6 +50,7 @@ public class SecondaryController {
      */
     @FXML
 	public void loadOrderListView() {
+    	// this method isn't getting the correct order number.
     	Collection<String> tempOrders = new ArrayList<String>();
     	for(int i = 0; i < order.size(); i++) {
     		 tempOrders.add(order.get(i).toString()); 
