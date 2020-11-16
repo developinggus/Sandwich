@@ -4,6 +4,9 @@
  */
 package application;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -12,6 +15,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 public class SecondaryController {
@@ -57,9 +62,42 @@ public class SecondaryController {
     	}
     	orderSummary.getItems().addAll(tempOrders);
 	}
+    
     public void initData(ArrayList<OrderLine> orders) {
     	order = orders;
     }
 
+    /**
+     * export accounts from database to txt file
+     * @param event clicking export menu button
+     */
+    @FXML
+    private void exportFile(ActionEvent event) {
+    	FileChooser chooser = new FileChooser();
+    	chooser.setTitle("Open Target File for the Export");
+    	chooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files", "*.txt"),
+    			new ExtensionFilter("All Files", "*.*"));
+    	Stage stage = new Stage();
+    	File targetFile = chooser.showSaveDialog(stage);
+    	if ( targetFile != null ) {
+    		try {
+    			writeToFile(orderSummary, targetFile);
+    		} catch (IOException ex) {    	   
+    			//messageArea.appendText("Unable to export order.");
+    		}
+    	}
+    	//export accounts database to a txt file
+    }
+    public String writeToFile(ListView<String> orderSummary, File targetFile){
+		
+    	String data;
+		PrintWriter writer;
+        writer = new PrintWriter(targetFile);
+        writer.println(data);
+        writer.close();
+        
+        
+        return data;
+    }
 }
 
