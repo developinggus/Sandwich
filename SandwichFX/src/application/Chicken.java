@@ -36,10 +36,11 @@ public class Chicken extends Sandwich {
 	 */ 
 	@Override
 	public String toString() {
+		String new_ingredients = ingredients;
 		for (int i = 0; i < extras.size(); i++) {
-				ingredients = ingredients + "," + extras.get(i).getName();
+				new_ingredients = new_ingredients + "," + extras.get(i).getName();
 		}
-		return "Chicken Sandwich: " + ingredients + "," + String.format("%,.2f", price());
+		return "Chicken Sandwich: " + new_ingredients + "," + String.format("%,.2f", price());
 	}
 	
 	/**

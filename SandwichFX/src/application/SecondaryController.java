@@ -92,12 +92,12 @@ public class SecondaryController {
     }
     public String writeToFile(ListView<String> orderSummary, PrintWriter writer){
 		
-    	String data;
+    	String data = "";
         
-        
+        /*
         writer.println(data);
         writer.close();
-        
+        */
         
         return data;
     }
