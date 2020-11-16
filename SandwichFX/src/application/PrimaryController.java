@@ -36,7 +36,7 @@ public class PrimaryController {
 
 	private SecondaryController second = null;
 
-	private Order order = new Order();
+	public Order order = new Order();
 
 	@FXML
     private ComboBox <String> sandwichType;
@@ -232,8 +232,6 @@ public class PrimaryController {
 		prepBasicSandwich();
     }
 
-
-
 	/**
 	 * Creates a new sandwich object of the same type after one is created.
 	 */
@@ -262,7 +260,6 @@ public class PrimaryController {
     	adjustPrice();
     	clearIngredients();
 	}
-
 
 	/**
 	 * Opens second window to show order summary.
