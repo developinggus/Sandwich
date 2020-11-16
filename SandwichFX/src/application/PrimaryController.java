@@ -34,7 +34,7 @@ public class PrimaryController {
 	
 	private Sandwich sandwich;
 	
-	private SecondaryController second = new SecondaryController(this);
+	private SecondaryController second = null;
    
 	private Order order = new Order();
 	
@@ -225,8 +225,10 @@ public class PrimaryController {
 		OrderLine orderLine = new OrderLine(Order.lineNumber, sandwich, sandwich.price());
 		order.add(orderLine);
 		Order.lineNumber = Order.lineNumber + 1;
-		second.clearOrderSummary();
-	    second.loadOrderListView();
+		if(second != null) {
+			second.clearOrderSummary();
+			second.loadOrderListView();
+		}
 		prepBasicSandwich();
     }
 	
@@ -268,6 +270,10 @@ public class PrimaryController {
 	 */
     @FXML
     void showOrderButton(ActionEvent event) {
+    	if(second != null) {
+    	    second.closeWindow();
+    	}
+    	
     	try {
     	    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Secondary.fxml"));
     	    Stage stage = new Stage();

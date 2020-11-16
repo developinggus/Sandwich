@@ -34,13 +34,6 @@ public class SecondaryController {
     @FXML
     private Button backButton;
     
-    /**
-     * Constructor for secondary Controller
-     * @param primary main controller reference is passed into this class.
-     */
-    public SecondaryController(PrimaryController primary) {
-    	this.primary = primary;
-    }
     
     public SecondaryController() {
     	
@@ -48,12 +41,22 @@ public class SecondaryController {
     
     /**
      * Clear order
-     * @param event
+     * @param event clear button pressed.
      */
     @FXML
     void clearOrderButton(ActionEvent event) {
     	clearOrderSummary();
     	primary.clearOrderSummary();
+    	order = null;
+    	closeWindow();
+    }
+    
+    /**
+     * closes the secondary window
+     */
+    void closeWindow() {
+	    Stage stage = (Stage) backButton.getScene().getWindow();
+	    stage.close();
     }
     
     /**
@@ -72,8 +75,7 @@ public class SecondaryController {
      */
     @FXML
     void goBack(ActionEvent event) {
-	    Stage stage = (Stage) backButton.getScene().getWindow();
-	    stage.close();
+    	closeWindow();
     }
     
     /**
@@ -82,6 +84,7 @@ public class SecondaryController {
     @FXML
 	public void loadOrderListView() {
     	if(order == null) {
+    		orderSummary.getItems().addAll("");
     		return;
     	}
     	// this method isn't getting the correct order number.
@@ -97,8 +100,14 @@ public class SecondaryController {
      * @param orders sandwiches ordered by user on primary controller.
      */
     public void initialize(ArrayList<OrderLine> orders, PrimaryController primary) {
-    	order = orders;
+    	if(orders != null) {
+    		order = orders;
+    	}
+    	else {
+    		order = new ArrayList<OrderLine> ();
+    	}
     	this.primary = primary;
+    
     }
 
     /**

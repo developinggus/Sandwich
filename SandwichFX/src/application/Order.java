@@ -75,16 +75,6 @@ public class Order implements Customizable {
 	}
 
 	public static void main(String[] args) {
-		/*
-		lineNumber = 5;
-		Beef beef_patty = new Beef();
-		Extra bacon = new Extra("bacon");
-		beef_patty.add(bacon);
-		OrderLine order = new OrderLine(lineNumber,beef_patty,beef_patty.price()); 
-		Order wait_line = new Order();
-		lineNumber = 20;
-		//System.out.print(order.getLineNumber());
-		wait_line.add(order);
-		*/
+		
 	}
 }
