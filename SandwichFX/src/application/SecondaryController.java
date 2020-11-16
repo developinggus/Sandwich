@@ -20,6 +20,9 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 public class SecondaryController {
+	
+	private PrimaryController primary;
+	
 	private ArrayList<OrderLine> order;
 	
     @FXML
@@ -32,12 +35,31 @@ public class SecondaryController {
     private Button backButton;
     
     /**
+     * Constructor for secondary Controller
+     * @param primary main controller reference is passed into this class.
+     */
+    public SecondaryController(PrimaryController primary) {
+    	this.primary = primary;
+    }
+    
+    /**
      * Clear order
      * @param event
      */
     @FXML
     void clearOrderButton(ActionEvent event) {
-
+    	clearOrderSummary();
+    	primary.clearOrderSummary();
+    }
+    
+    /**
+     * Clears order.
+     */
+    void clearOrderSummary() {
+    	if(orderSummary == null) {
+    		return;
+    	}
+    	orderSummary.getItems().clear();
     }
 
     /**
@@ -55,6 +77,9 @@ public class SecondaryController {
      */
     @FXML
 	public void loadOrderListView() {
+    	if(order == null) {
+    		return;
+    	}
     	// this method isn't getting the correct order number.
     	Collection<String> tempOrders = new ArrayList<String>();
     	for(int i = 0; i < order.size(); i++) {
@@ -63,6 +88,10 @@ public class SecondaryController {
     	orderSummary.getItems().addAll(tempOrders);
 	}
     
+    /**
+     * Passing information back and forth between controllers.
+     * @param orders sandwiches ordered by user on primary controller.
+     */
     public void initData(ArrayList<OrderLine> orders) {
     	order = orders;
     }
@@ -83,23 +112,26 @@ public class SecondaryController {
     		try {		
     			PrintWriter writer;
     			writer = new PrintWriter(targetFile);
-    			writeToFile(orderSummary, writer);
+    			writeToFile(writer);
     		} catch (IOException ex) {    	   
     			//messageArea.appendText("Unable to export order.");
     		}
     	}
     	//export accounts database to a txt file
     }
-    public String writeToFile(ListView<String> orderSummary, PrintWriter writer){
-		
-    	String data;
-        
-        
-        writer.println(data);
+   
+    /**
+     * Takes the order summary and writes it to a text file.
+     * @param writer the printwriter for the file we write the order summary to.
+     */
+    public void writeToFile(PrintWriter writer){
+    	int size = orderSummary.getItems().size();
+    	
+    	for(int i = 0; i < size; i++) {
+        	writer.println(orderSummary.getItems().get(i));
+        }
+    	
         writer.close();
-        
-        
-        return data;
     }
 }
 

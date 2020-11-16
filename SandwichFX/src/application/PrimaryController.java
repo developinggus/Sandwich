@@ -33,6 +33,8 @@ public class PrimaryController {
 			.observableArrayList();
 	
 	private Sandwich sandwich;
+	
+	private SecondaryController second = new SecondaryController(this);
    
 	private Order order = new Order();
 	
@@ -93,6 +95,7 @@ public class PrimaryController {
 
     }
     
+    
     /**
      * Adjusts the price of a sandwich based on the current toppings.
      */
@@ -100,7 +103,7 @@ public class PrimaryController {
     	String sandwichPrice = "$" + String.format("%,.2f", sandwich.price());
     	priceTextArea.setText(sandwichPrice);
     }
-    
+       
     
     /**
      * Add extra ingredients to the sandwich object and handle price change.
@@ -122,6 +125,7 @@ public class PrimaryController {
     }
 
     
+    
     /**
      * Remove extra ingredients from the sandwich.
      *
@@ -142,6 +146,7 @@ public class PrimaryController {
     	adjustPrice();
     }
       
+    
     /**
      * Remove extra ingredients from the sandwich.
      * @param event pressing the remove button.
@@ -151,6 +156,7 @@ public class PrimaryController {
     	clearIngredients();
     }
 
+    
     /**
      * Remove selected ingredient from extra ingredients on sandwich.
      * @param event clicking remove button and selecting an extra.
@@ -192,7 +198,8 @@ public class PrimaryController {
 		sandwichPic.setImage(im);
 	}
 	
-	/**
+	
+    /**
 	 * Checks if there is room to add an extra ingredient 
 	 * @return true if valid, false otherwise
 	 */
@@ -208,6 +215,7 @@ public class PrimaryController {
     	return true;
 	}
    
+	
 	/**
 	 * Adds sandwich to order when button is pressed.
 	 * @param event button Add to Order is pressed.
@@ -217,7 +225,42 @@ public class PrimaryController {
 		OrderLine orderLine = new OrderLine(Order.lineNumber, sandwich, sandwich.price());
 		order.add(orderLine);
 		Order.lineNumber = Order.lineNumber + 1;
+		second.clearOrderSummary();
+	    second.loadOrderListView();
+		prepBasicSandwich();
     }
+	
+	
+	
+	/**
+	 * Creates a new sandwich object of the same type after one is created.
+	 */
+	void prepBasicSandwich() {
+    	String selection = sandwichType.getValue();
+    	sandwich = null;
+    	//change image to URI instead of URL in-case the picture is taken down.
+    	if(selection.equals("Chicken")) {
+    		sandwich = new Chicken();
+    		ingredientListView.getItems().clear();
+    		ingredientListView.getItems().addAll(new Chicken().getIngredients());
+    	}
+    	
+    	if(selection.equals("Fish")) {
+    		sandwich = new Fish();
+    		ingredientListView.getItems().clear();
+    		ingredientListView.getItems().addAll(new Fish().getIngredients());
+    	}
+    	
+    	if(selection.equals("Beef")) {
+    		sandwich = new Beef();
+    		ingredientListView.getItems().clear();
+    		ingredientListView.getItems().addAll(new Beef().getIngredients());
+    	}
+    	
+    	adjustPrice();
+    	clearIngredients();
+	}
+	
 	
 	/**
 	 * Opens second window to show order summary.
@@ -230,7 +273,7 @@ public class PrimaryController {
     	    Stage stage = new Stage();
     	    Parent root1 = (Parent) fxmlLoader.load();
     	    stage.setScene(new Scene(root1)); 
-        	SecondaryController second = fxmlLoader.getController();
+        	second = fxmlLoader.getController();
         	second.initData(order.getOrders());
     	    stage.setTitle("Order Summary");
     	    stage.show();
@@ -244,7 +287,19 @@ public class PrimaryController {
 
     }
 
+    /**
+     * Clear order summary.
+     */
+    void clearOrderSummary() {
+    	order = new Order();
+    }
 
-
-	
+    
+    /**
+     * Getter for the primary controllers order.
+     * @return order that was input by user in primary window.
+     */
+	public Order getOrder() {
+		return this.order;
+	}
 }
