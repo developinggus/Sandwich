@@ -80,19 +80,21 @@ public class SecondaryController {
     	Stage stage = new Stage();
     	File targetFile = chooser.showSaveDialog(stage);
     	if ( targetFile != null ) {
-    		try {
-    			writeToFile(orderSummary, targetFile);
+    		try {		
+    			PrintWriter writer;
+    			writer = new PrintWriter(targetFile);
+    			writeToFile(orderSummary, writer);
     		} catch (IOException ex) {    	   
     			//messageArea.appendText("Unable to export order.");
     		}
     	}
     	//export accounts database to a txt file
     }
-    public String writeToFile(ListView<String> orderSummary, File targetFile){
+    public String writeToFile(ListView<String> orderSummary, PrintWriter writer){
 		
     	String data;
-		PrintWriter writer;
-        writer = new PrintWriter(targetFile);
+        
+        
         writer.println(data);
         writer.close();
         
