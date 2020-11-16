@@ -214,8 +214,9 @@ public class PrimaryController {
 	 */
 	@FXML
     void AddSandwichButton(ActionEvent event) {
-		OrderLine orderLine = new OrderLine(order.getLineNumber(), sandwich, sandwich.price());
+		OrderLine orderLine = new OrderLine(Order.lineNumber, sandwich, sandwich.price());
 		order.add(orderLine);
+		Order.lineNumber = Order.lineNumber + 1;
     }
 	
 	/**
@@ -234,6 +235,7 @@ public class PrimaryController {
     	    stage.setTitle("Order Summary");
     	    stage.show();
     	    second.loadOrderListView();
+    	    
     	}
         catch (IOException e) {
             e.printStackTrace();
