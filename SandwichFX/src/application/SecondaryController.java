@@ -20,24 +20,53 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 public class SecondaryController {
+
+	private PrimaryController primary;
+
 	private ArrayList<OrderLine> order;
-	
+
     @FXML
     private TextArea OrderTotalTextArea;
 
     @FXML
     private ListView<String> orderSummary;
-    
+
     @FXML
     private Button backButton;
-    
+
+
+    public SecondaryController() {
+
+    }
+
     /**
      * Clear order
-     * @param event
+     * @param event clear button pressed.
      */
     @FXML
     void clearOrderButton(ActionEvent event) {
-    	
+    	clearOrderSummary();
+    	primary.clearOrderSummary();
+    	order = null;
+    	closeWindow();
+    }
+
+    /**
+     * closes the secondary window
+     */
+    void closeWindow() {
+	    Stage stage = (Stage) backButton.getScene().getWindow();
+	    stage.close();
+    }
+
+    /**
+     * Clears order.
+     */
+    void clearOrderSummary() {
+    	if(orderSummary == null) {
+    		return;
+    	}
+    	orderSummary.getItems().clear();
     }
 
     /**
@@ -46,25 +75,39 @@ public class SecondaryController {
      */
     @FXML
     void goBack(ActionEvent event) {
-	    Stage stage = (Stage) backButton.getScene().getWindow();
-	    stage.close();
+    	closeWindow();
     }
-    
+
     /**
      * Prepare secondary window with order values.
      */
     @FXML
 	public void loadOrderListView() {
+    	if(order == null) {
+    		orderSummary.getItems().addAll("");
+    		return;
+    	}
     	// this method isn't getting the correct order number.
     	Collection<String> tempOrders = new ArrayList<String>();
     	for(int i = 0; i < order.size(); i++) {
-    		 tempOrders.add(order.get(i).toString()); 
+    		 tempOrders.add(order.get(i).toString());
     	}
     	orderSummary.getItems().addAll(tempOrders);
 	}
-    
-    public void initData(ArrayList<OrderLine> orders) {
-    	order = orders;
+
+    /**
+     * Passing information back and forth between controllers.
+     * @param orders sandwiches ordered by user on primary controller.
+     */
+    public void initialize(ArrayList<OrderLine> orders, PrimaryController primary) {
+    	if(orders != null) {
+    		order = orders;
+    	}
+    	else {
+    		order = new ArrayList<OrderLine> ();
+    	}
+    	this.primary = primary;
+
     }
 
     /**
@@ -80,26 +123,31 @@ public class SecondaryController {
     	Stage stage = new Stage();
     	File targetFile = chooser.showSaveDialog(stage);
     	if ( targetFile != null ) {
-    		try {		
+    		try {
     			PrintWriter writer;
     			writer = new PrintWriter(targetFile);
-    			writeToFile(orderSummary, writer);
-    		} catch (IOException ex) {    	   
+    			writeToFile(writer);
+    		} catch (IOException ex) {
     			//messageArea.appendText("Unable to export order.");
     		}
     	}
     	//export accounts database to a txt file
     }
-    public String writeToFile(ListView<String> orderSummary, PrintWriter writer){
-		
-    	String data = "";
-        
-        /*
-        writer.println(data);
-        writer.close();
-        */
-        
-        return data;
-    }
-}
 
+    /**
+     * Takes the order summary and writes it to a text file.
+     * @param writer the printwriter for the file we write the order summary to.
+     */
+    public void writeToFile(PrintWriter writer){
+    	int size = orderSummary.getItems().size();
+
+    	for(int i = 0; i < size; i++) {
+        	writer.println(orderSummary.getItems().get(i));
+        }
+
+        writer.close();
+    }
+
+    //@FXML
+    private void initialize() {}
+}

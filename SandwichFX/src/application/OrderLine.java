@@ -37,7 +37,7 @@ public class OrderLine {
 	@Override
 	public String toString() {
 		return Integer.toString(lineNumber) + " " 
-				+ sandwich.toString();
+				+ sandwich.toString();	
 	}
 	/**
 	 * Setter method for lineNumber
