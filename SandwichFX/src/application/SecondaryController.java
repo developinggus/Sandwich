@@ -148,6 +148,16 @@ public class SecondaryController {
         writer.close();
     }
 
+    /**
+     * Remove the selected orderline.
+     * @param event clicked remove button.
+     */
+    @FXML
+    void removeOrderLine(ActionEvent event) {
+    	String selection = orderSummary.getSelectionModel().getSelectedItem();
+    	int lineNumber = Integer.parseInt(selection[0]);
+    }
+    
     //@FXML
     private void initialize() {}
 }
