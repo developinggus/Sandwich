@@ -63,18 +63,24 @@ public class PrimaryController {
     		sandwich = new Chicken();
     		Image im = new Image("https://cdn.cnn.com/cnnnext/dam/assets/200522115738-20200522-kfc-chicken-sandwich-super-tease.jpg");
     		sandwichPic.setImage(im);
+    		ingredientListView.getItems().clear();
+    		ingredientListView.getItems().addAll(new Chicken().getIngredients());
     	}
     	
     	if(selection.equals("Fish")) {
     		sandwich = new Fish();
     		Image im = new Image("https://showmars.com/img/menu/FishSandwich-675x456.png");
     		sandwichPic.setImage(im);
+    		ingredientListView.getItems().clear();
+    		ingredientListView.getItems().addAll(new Fish().getIngredients());
     	}
     	
     	if(selection.equals("Beef")) {
     		sandwich = new Beef();
     		Image im = new Image("https://www.foxvalleyfoodie.com/wp-content/uploads/2018/01/arbys-roast-beef.jpg");
     		sandwichPic.setImage(im);
+    		ingredientListView.getItems().clear();
+    		ingredientListView.getItems().addAll(new Beef().getIngredients());
 
     	}
     	
