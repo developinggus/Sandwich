@@ -133,6 +133,25 @@ public class SecondaryController {
     	}
     	//export accounts database to a txt file
     }
+    
+  /**
+   * Duplicates an order in order summary  
+   * @param event is the action of the button "Same order line"
+   */
+  public void sameOrderLine(ActionEvent event) {
+	  String selected = orderSummary.getSelectionModel().getSelectedItem();
+	  String[] selected_array = selected.split(" ");
+
+	  for (int i = 0; i < order.size(); i++) {
+		  if ( order.get(i).getLineNumber() == Integer.parseInt(selected_array[0])) {
+			  OrderLine same_order = new OrderLine(order.size() + 1, order.get(i).getSandwich(), order.get(i).getPrice());
+			  primary.order.add(same_order);
+			  
+			  
+		  }
+	  }
+	  
+  }
 
     /**
      * Takes the order summary and writes it to a text file.
