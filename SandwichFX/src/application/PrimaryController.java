@@ -25,37 +25,37 @@ public class PrimaryController {
 
 	private ObservableList<String> sandwiches = FXCollections
 			.observableArrayList("Chicken", "Beef", "Fish");
-	
+
 	private ObservableList<String> ingredients = FXCollections
 			.observableArrayList();
-	
+
 	private ObservableList<String> addOnToppings = FXCollections
 			.observableArrayList();
-	
+
 	private Sandwich sandwich;
-	
+
 	private SecondaryController second = null;
-   
+
 	private Order order = new Order();
-	
+
 	@FXML
     private ComboBox <String> sandwichType;
-	
+
     @FXML
     private ListView <String> ingredientListView;
-    
+
     @FXML
     private ListView<String> extraIngredients;
 
     @FXML
     private ListView<String> addedIngredients;
-    
+
     @FXML
     private ImageView sandwichPic;
-    
+
     @FXML
     private TextArea priceTextArea;
-    
+
     /**
      * Set new picture and create object when a different sandwich is chosen on the combo box.
      * @param event a different sandwich is chosen on the combo box
@@ -72,7 +72,7 @@ public class PrimaryController {
     		ingredientListView.getItems().clear();
     		ingredientListView.getItems().addAll(new Chicken().getIngredients());
     	}
-    	
+
     	if(selection.equals("Fish")) {
     		sandwich = new Fish();
     		Image im = new Image("https://showmars.com/img/menu/FishSandwich-675x456.png");
@@ -80,7 +80,7 @@ public class PrimaryController {
     		ingredientListView.getItems().clear();
     		ingredientListView.getItems().addAll(new Fish().getIngredients());
     	}
-    	
+
     	if(selection.equals("Beef")) {
     		sandwich = new Beef();
     		Image im = new Image("https://www.foxvalleyfoodie.com/wp-content/uploads/2018/01/arbys-roast-beef.jpg");
@@ -89,13 +89,13 @@ public class PrimaryController {
     		ingredientListView.getItems().addAll(new Beef().getIngredients());
 
     	}
-    	
+
     	adjustPrice();
     	clearIngredients();
 
     }
-    
-    
+
+
     /**
      * Adjusts the price of a sandwich based on the current toppings.
      */
@@ -103,8 +103,8 @@ public class PrimaryController {
     	String sandwichPrice = "$" + String.format("%,.2f", sandwich.price());
     	priceTextArea.setText(sandwichPrice);
     }
-       
-    
+
+
     /**
      * Add extra ingredients to the sandwich object and handle price change.
      * @param event pressing add button after selecting a topping.
@@ -124,18 +124,18 @@ public class PrimaryController {
     	}
     }
 
-    
-    
+
+
     /**
      * Remove extra ingredients from the sandwich.
      *
      */
     void clearIngredients() {
-    	
+
     	if (addedIngredients.getItems().isEmpty()) {
     		return;
     	}
-    	
+
     	String[] addedIngredients_array = (String.join(",", addedIngredients.getItems())).split(",");	//Converts listview to array
     	addedIngredients.getItems().clear();
     	for (int i = 0; i < addedIngredients_array.length; i++) {
@@ -145,8 +145,8 @@ public class PrimaryController {
     	}
     	adjustPrice();
     }
-      
-    
+
+
     /**
      * Remove extra ingredients from the sandwich.
      * @param event pressing the remove button.
@@ -156,7 +156,7 @@ public class PrimaryController {
     	clearIngredients();
     }
 
-    
+
     /**
      * Remove selected ingredient from extra ingredients on sandwich.
      * @param event clicking remove button and selecting an extra.
@@ -167,14 +167,14 @@ public class PrimaryController {
     	if (selected != null) {
     		addedIngredients.getItems().remove(selected);
     		Extra extra = new Extra(selected);
-    		sandwich.remove(extra);    		
+    		sandwich.remove(extra);
     		extraIngredients.getItems().add(selected);
     		adjustPrice();
     	}
 
     }
-    
-	
+
+
     /**
      * Prepare main window with default values and images.
      */
@@ -187,26 +187,26 @@ public class PrimaryController {
 		ingredients.addAll("Fried Chicken",
 				"Spicy Sauce",
 				"Pickles");
-		
+
 		ingredientListView.getItems().addAll(ingredients);
 
 		addOnToppings.addAll("Lettuce", "Tomatoes", "Onion", "Bacon",
 					"Mushrooms", "Spinach", "Pickles", "Provolone", "American", "Swiss");
-		
+
 		extraIngredients.getItems().addAll(addOnToppings);
 		Image im = new Image("https://cdn.cnn.com/cnnnext/dam/assets/200522115738-20200522-kfc-chicken-sandwich-super-tease.jpg");
 		sandwichPic.setImage(im);
 	}
-	
-	
+
+
     /**
-	 * Checks if there is room to add an extra ingredient 
+	 * Checks if there is room to add an extra ingredient
 	 * @return true if valid, false otherwise
 	 */
 	boolean validExtraIngredient() {
         Alert a = new Alert(AlertType.NONE);
-        a.setAlertType(AlertType.ERROR); 
-        a.setContentText("CANNOT ADD MORE THAN 6 EXTRA INGREDIENTS!"); 
+        a.setAlertType(AlertType.ERROR);
+        a.setContentText("CANNOT ADD MORE THAN 6 EXTRA INGREDIENTS!");
     	String[] addedIngredients_array = (String.join(", ", addedIngredients.getItems())).split(",");	//Converts listview to array
     	if ( addedIngredients_array.length == 6 ) {
     		a.show();
@@ -214,8 +214,8 @@ public class PrimaryController {
     	}
     	return true;
 	}
-   
-	
+
+
 	/**
 	 * Adds sandwich to order when button is pressed.
 	 * @param event button Add to Order is pressed.
@@ -231,9 +231,9 @@ public class PrimaryController {
 		}
 		prepBasicSandwich();
     }
-	
-	
-	
+
+
+
 	/**
 	 * Creates a new sandwich object of the same type after one is created.
 	 */
@@ -246,24 +246,24 @@ public class PrimaryController {
     		ingredientListView.getItems().clear();
     		ingredientListView.getItems().addAll(new Chicken().getIngredients());
     	}
-    	
+
     	if(selection.equals("Fish")) {
     		sandwich = new Fish();
     		ingredientListView.getItems().clear();
     		ingredientListView.getItems().addAll(new Fish().getIngredients());
     	}
-    	
+
     	if(selection.equals("Beef")) {
     		sandwich = new Beef();
     		ingredientListView.getItems().clear();
     		ingredientListView.getItems().addAll(new Beef().getIngredients());
     	}
-    	
+
     	adjustPrice();
     	clearIngredients();
 	}
-	
-	
+
+
 	/**
 	 * Opens second window to show order summary.
 	 * @param event Show order button is pressed.
@@ -273,18 +273,18 @@ public class PrimaryController {
     	if(second != null) {
     	    second.closeWindow();
     	}
-    	
+
     	try {
     	    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Secondary.fxml"));
     	    Stage stage = new Stage();
     	    Parent root1 = (Parent) fxmlLoader.load();
-    	    stage.setScene(new Scene(root1)); 
+    	    stage.setScene(new Scene(root1));
         	second = fxmlLoader.getController();
         	second.initialize(order.getOrders(), this);
     	    stage.setTitle("Order Summary");
     	    stage.show();
     	    second.loadOrderListView();
-    	    
+
     	}
         catch (IOException e) {
             e.printStackTrace();
@@ -300,7 +300,7 @@ public class PrimaryController {
     	order = new Order();
     }
 
-    
+
     /**
      * Getter for the primary controllers order.
      * @return order that was input by user in primary window.
