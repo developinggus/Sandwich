@@ -20,25 +20,25 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 public class SecondaryController {
-	
+
 	private PrimaryController primary;
-	
+
 	private ArrayList<OrderLine> order;
-	
+
     @FXML
     private TextArea OrderTotalTextArea;
 
     @FXML
     private ListView<String> orderSummary;
-    
+
     @FXML
     private Button backButton;
-    
-    
+
+
     public SecondaryController() {
-    	
+
     }
-    
+
     /**
      * Clear order
      * @param event clear button pressed.
@@ -50,7 +50,7 @@ public class SecondaryController {
     	order = null;
     	closeWindow();
     }
-    
+
     /**
      * closes the secondary window
      */
@@ -58,7 +58,7 @@ public class SecondaryController {
 	    Stage stage = (Stage) backButton.getScene().getWindow();
 	    stage.close();
     }
-    
+
     /**
      * Clears order.
      */
@@ -77,7 +77,7 @@ public class SecondaryController {
     void goBack(ActionEvent event) {
     	closeWindow();
     }
-    
+
     /**
      * Prepare secondary window with order values.
      */
@@ -90,12 +90,12 @@ public class SecondaryController {
 
     	Collection<String> tempOrders = new ArrayList<String>();
     	for(int i = 0; i < order.size(); i++) {
-    		 tempOrders.add(order.get(i).toString()); 
+    		 tempOrders.add(order.get(i).toString());
     	}
     	orderSummary.getItems().clear();
     	orderSummary.getItems().addAll(tempOrders);
 	}
-    
+
     /**
      * Passing information back and forth between controllers.
      * @param orders sandwiches ordered by user on primary controller.
@@ -108,7 +108,7 @@ public class SecondaryController {
     		order = new ArrayList<OrderLine> ();
     	}
     	this.primary = primary;
-    
+
     }
 
     /**
@@ -128,24 +128,43 @@ public class SecondaryController {
     			PrintWriter writer;
     			writer = new PrintWriter(targetFile);
     			writeToFile(writer);
-    		} catch (IOException ex) {    	   
+    		} catch (IOException ex) {
     			//messageArea.appendText("Unable to export order.");
     		}
     	}
     	//export accounts database to a txt file
     }
-   
+
+  /**
+   * Duplicates an order in order summary
+   * @param event is the action of the button "Same order line"
+   */
+  public void sameOrderLine(ActionEvent event) {
+	  String selected = orderSummary.getSelectionModel().getSelectedItem();
+	  String[] selected_array = selected.split(" ");
+
+	  for (int i = 0; i < order.size(); i++) {
+		  if ( order.get(i).getLineNumber() == Integer.parseInt(selected_array[0])) {
+			  OrderLine same_order = new OrderLine(order.size() + 1, order.get(i).getSandwich(), order.get(i).getPrice());
+			  primary.order.add(same_order);
+
+
+		  }
+	  }
+
+  }
+
     /**
      * Takes the order summary and writes it to a text file.
      * @param writer the printwriter for the file we write the order summary to.
      */
     public void writeToFile(PrintWriter writer){
     	int size = orderSummary.getItems().size();
-    	
+
     	for(int i = 0; i < size; i++) {
         	writer.println(orderSummary.getItems().get(i));
         }
-    	
+
         writer.close();
     }
 
@@ -156,7 +175,7 @@ public class SecondaryController {
     @FXML
     void removeOrderLine(ActionEvent event) {
     	//what if nothing is selected??
-    	
+
     	String selection = orderSummary.getSelectionModel().getSelectedItem();
     	if(selection == null) {
     		return;
@@ -167,8 +186,7 @@ public class SecondaryController {
     	order = primary.order.getOrders();
     	loadOrderListView();
     }
-    
+
     //@FXML
     private void initialize() {}
 }
-
