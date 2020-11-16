@@ -4,33 +4,37 @@
  */
 package application;
 
+import java.io.IOException;
 import javafx.collections.FXCollections;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class PrimaryController {
 
-	ObservableList<String> sandwiches = FXCollections
+	private ObservableList<String> sandwiches = FXCollections
 			.observableArrayList("Chicken", "Beef", "Fish");
 	
-	ObservableList<String> ingredients = FXCollections
+	private ObservableList<String> ingredients = FXCollections
 			.observableArrayList();
 	
-	ObservableList<String> addOnToppings = FXCollections
+	private ObservableList<String> addOnToppings = FXCollections
 			.observableArrayList();
 	
-	Sandwich sandwich;
+	private Sandwich sandwich;
    
-	Order order = new Order();
+	private Order order = new Order();
 	
 	@FXML
     private ComboBox <String> sandwichType;
@@ -213,4 +217,32 @@ public class PrimaryController {
 		OrderLine orderLine = new OrderLine(order.getLineNumber(), sandwich, sandwich.price());
 		order.add(orderLine);
     }
+	
+	/**
+	 * Opens second window to show order summary.
+	 * @param event Show order button is pressed.
+	 */
+    @FXML
+    void showOrderButton(ActionEvent event) {
+    	try {
+    	    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Secondary.fxml"));
+    	    Stage stage = new Stage();
+    	    Parent root1 = (Parent) fxmlLoader.load();
+    	    stage.setScene(new Scene(root1)); 
+        	SecondaryController second = fxmlLoader.getController();
+        	second.initData(order.getOrders());
+    	    stage.setTitle("Order Summary");
+    	    stage.show();
+    	    second.loadOrderListView();
+    	}
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+
+	
 }

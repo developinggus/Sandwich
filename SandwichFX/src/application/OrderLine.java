@@ -31,6 +31,16 @@ public class OrderLine {
 	}
 	
 	/**
+	 * To string method for the contents of an orderline.
+	 * @return the string format of an order
+	 */
+	@Override
+	public String toString() {
+		return Integer.toString(lineNumber) + " " 
+				+ sandwich.toString() + " "
+				+ Double.toString(price);
+	}
+	/**
 	 * Setter method for lineNumber
 	 * @param n is the new lineNumber
 	 */

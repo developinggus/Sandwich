@@ -54,7 +54,7 @@
 				<ListView fx:id="extraIngredients" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
 				<GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
 					<columnConstraints>
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+						<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 					</columnConstraints>
 					<rowConstraints>
 						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -82,8 +82,12 @@
 					<children>
 						<Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price $" textAlignment="CENTER" wrappingWidth="144.86376953125" />
 						<TextArea fx:id="priceTextArea" prefHeight="20.0" prefWidth="145.0" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" onAction="#AddSandwichButton" text="Add to Order" GridPane.rowIndex="2" />
-                  <Button layoutX="10.0" layoutY="120.0" mnemonicParsing="false" text="Show Order" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" onAction="#AddSandwichButton" text="Add to Order" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Button layoutX="10.0" layoutY="120.0" mnemonicParsing="false" onAction="#showOrderButton" text="Show Order" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Button>
 					</children>
 				</GridPane>
 			</children>
