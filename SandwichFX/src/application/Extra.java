@@ -8,10 +8,18 @@ public class Extra {
 	
 	private String name;
 	
+	/**
+	 * Constructor for the extra class
+	 * @param name of the extra
+	 */
 	public Extra(String name) {
 		this.name = name;
 	}
 	
+	/**
+	 * Getter method for name
+	 * @return the String "name"
+	 */
 	public String getName() {
 		return this.name;
 	}
