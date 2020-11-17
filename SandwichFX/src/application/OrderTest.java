@@ -108,6 +108,12 @@ class OrderTest {
 		
 	}
 	
+	/**
+	 * compare two arraylists of orderlines.
+	 * @param a array list of orderlines
+	 * @param b array list of orderlines
+	 * @return true if the lists are identical, false otherwise.
+	 */
 	boolean compareLines(ArrayList<OrderLine> a, ArrayList<OrderLine> b) {
 		
 		if ( a.size() != b.size() ) {

@@ -95,7 +95,6 @@ public class PrimaryController {
 
     }
 
-
     /**
      * Adjusts the price of a sandwich based on the current toppings.
      */
@@ -103,7 +102,6 @@ public class PrimaryController {
     	String sandwichPrice = "$" + String.format("%,.2f", sandwich.price());
     	priceTextArea.setText(sandwichPrice);
     }
-
 
     /**
      * Add extra ingredients to the sandwich object and handle price change.
@@ -123,8 +121,6 @@ public class PrimaryController {
     		adjustPrice();
     	}
     }
-
-
 
     /**
      * Remove extra ingredients from the sandwich.
@@ -146,7 +142,6 @@ public class PrimaryController {
     	adjustPrice();
     }
 
-
     /**
      * Remove extra ingredients from the sandwich.
      * @param event pressing the remove button.
@@ -155,7 +150,6 @@ public class PrimaryController {
     void clearIngredientsButton(ActionEvent event) {
     	clearIngredients();
     }
-
 
     /**
      * Remove selected ingredient from extra ingredients on sandwich.
@@ -173,7 +167,6 @@ public class PrimaryController {
     	}
 
     }
-
 
     /**
      * Prepare main window with default values and images.
@@ -198,7 +191,6 @@ public class PrimaryController {
 		sandwichPic.setImage(im);
 	}
 
-
     /**
 	 * Checks if there is room to add an extra ingredient
 	 * @return true if valid, false otherwise
@@ -214,7 +206,6 @@ public class PrimaryController {
     	}
     	return true;
 	}
-
 
 	/**
 	 * Adds sandwich to order when button is pressed.
@@ -295,7 +286,6 @@ public class PrimaryController {
     void clearOrderSummary() {
     	order = new Order();
     }
-
 
     /**
      * Getter for the primary controllers order.

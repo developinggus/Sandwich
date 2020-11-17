@@ -18,7 +18,6 @@ public class Order implements Customizable {
 		lineNumber = 1;
 	}
 	
-
 	/**
 	 * Override of the abstract add() class. This will add the orderLine object to the
 	 * ArrayList
@@ -62,7 +61,6 @@ public class Order implements Customizable {
 		return false;
 	}
 
-
 	/**
 	 * Getter method for returning the orders.
 	 * @return all sandwiches for this order.
@@ -71,6 +69,4 @@ public class Order implements Customizable {
 		return this.orderlines;
 	}
 
-	public static void main(String[] args) {
-	}
 }
