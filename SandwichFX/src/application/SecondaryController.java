@@ -28,7 +28,7 @@ public class SecondaryController {
 	private ArrayList<OrderLine> order;
 
     @FXML
-    private TextArea OrderTotalTextArea;
+    private TextArea orderTotalTextArea;
 
     @FXML
     private ListView<String> orderSummary;
@@ -96,6 +96,7 @@ public class SecondaryController {
     	}
     	orderSummary.getItems().clear();
     	orderSummary.getItems().addAll(tempOrders);
+    	updateTotal();
 	}
 
     /**
@@ -137,11 +138,11 @@ public class SecondaryController {
     	//export accounts database to a txt file
     }
 
-  /**
-   * Duplicates an order in order summary
-   * @param event is the action of the button "Same order line"
-   */
-  public void sameOrderLine(ActionEvent event) {
+    /**
+     * Duplicates an order in order summary
+     * @param event is the action of the button "Same order line"
+     */
+    public void sameOrderLine(ActionEvent event) {
 	  String selected = orderSummary.getSelectionModel().getSelectedItem();
 	  if ( selected == null ) {
 	        Alert a = new Alert(AlertType.NONE);
@@ -157,7 +158,6 @@ public class SecondaryController {
 			  OrderLine same_order = new OrderLine(order.size() + 1, order.get(i).getSandwich(), order.get(i).getPrice());
 			  primary.order.add(same_order);
 		      order = primary.order.getOrders();
-		    	//orderSummary.getItems().remo
 		      loadOrderListView();
 		      return;
 
@@ -191,6 +191,10 @@ public class SecondaryController {
 
     	String selection = orderSummary.getSelectionModel().getSelectedItem();
     	if(selection == null) {
+	        Alert a = new Alert(AlertType.NONE);
+	        a.setAlertType(AlertType.ERROR);
+	        a.setContentText("Please select an item to remove!");
+	        a.show();
     		return;
     	}
     	int lineNumber = Integer.parseInt(selection.split(" ")[0]);
@@ -200,6 +204,15 @@ public class SecondaryController {
     	loadOrderListView();
     }
 
+    private void updateTotal() {
+    	int numSandwiches = order.size();
+    	double total = 0;
+    	for(int i = 0; i < numSandwiches; i++) {
+    		total += order.get(i).getPrice();
+    	}
+    	orderTotalTextArea.setText("$" 
+    	+ String.format("%,.2f", total));
+    }
     //@FXML
-    private void initialize() {}
+    //private void initialize() {}
 }

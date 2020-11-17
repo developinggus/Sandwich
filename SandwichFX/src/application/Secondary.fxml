@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SecondaryController">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SecondaryController">
 	<center>
 		<ListView fx:id="orderSummary" prefHeight="600.0" prefWidth="900.0" BorderPane.alignment="CENTER" />
 	</center>
@@ -55,7 +55,7 @@
 							</rowConstraints>
 							<children>
 								<Text strokeType="OUTSIDE" strokeWidth="0.0" text="Order Total $" />
-								<TextArea fx:id="OrderTotalTextArea" editable="false" prefHeight="26.0" prefWidth="90.0" GridPane.columnIndex="1" />
+								<TextArea fx:id="orderTotalTextArea" editable="false" prefHeight="26.0" prefWidth="90.0" GridPane.columnIndex="1" />
 							</children>
 						</GridPane>
 					</children>
