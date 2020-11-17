@@ -17,6 +17,7 @@ public class Order implements Customizable {
 		this.orderlines = new ArrayList<OrderLine>();
 		lineNumber = 1;
 	}
+	
 
 	/**
 	 * Override of the abstract add() class. This will add the orderLine object to the
