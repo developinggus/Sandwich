@@ -12,6 +12,10 @@ import javafx.scene.layout.BorderPane;
 
 
 public class Main extends Application {
+	
+	/**
+	 * Opens the landing window of our project.
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -26,6 +30,10 @@ public class Main extends Application {
 		}
 	}
 	
+	/**
+	 * Main that we need to run to get window.
+	 * @param args command line arguments, there are none.
+	 */
 	public static void main(String[] args) {	
 		launch(args);
 	}

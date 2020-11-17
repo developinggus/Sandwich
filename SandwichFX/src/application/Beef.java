@@ -20,6 +20,7 @@ public class Beef extends Sandwich {
 	public Beef() {
 		
 	}
+	
 	/**
  	* Calculates the price of the sandwich.
  	* @return The price of the sandwich

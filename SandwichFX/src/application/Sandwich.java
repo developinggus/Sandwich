@@ -18,8 +18,15 @@ public abstract class Sandwich implements Customizable {
 		this.extras = new ArrayList<Extra>();
 	}
 	
+	/**
+	 * gets the price of a sandwich.
+	 * @return double of the price of a sandwich.
+	 */
 	public abstract double price();
 	
+	/**
+	 * to string method for sandwich abstract class.
+	 */
 	@Override
 	public String toString() {
 		return "";

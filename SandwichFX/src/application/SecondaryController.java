@@ -36,7 +36,9 @@ public class SecondaryController {
     @FXML
     private Button backButton;
 
-
+    /**
+     * constructor for this class.
+     */
     public SecondaryController() {
 
     }
@@ -204,6 +206,9 @@ public class SecondaryController {
     	loadOrderListView();
     }
 
+    /**
+     * updates the text area for total cost of order.
+     */
     private void updateTotal() {
     	int numSandwiches = order.size();
     	double total = 0;
@@ -213,6 +218,5 @@ public class SecondaryController {
     	orderTotalTextArea.setText("$" 
     	+ String.format("%,.2f", total));
     }
-    //@FXML
-    //private void initialize() {}
+
 }

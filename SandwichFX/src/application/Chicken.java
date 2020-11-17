@@ -21,6 +21,7 @@ public class Chicken extends Sandwich {
 	public Chicken() {
 		
 	}
+	
 	/**
  	* Calculates the price of the sandwich.
  	* @return The price of the sandwich

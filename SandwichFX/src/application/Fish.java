@@ -19,6 +19,7 @@ public class Fish extends Sandwich {
 	public Fish() {
 		
 	}
+	
 	/**
  	* Calculates the price of the sandwich.
  	* @return The price of the sandwich

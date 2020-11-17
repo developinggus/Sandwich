@@ -11,7 +11,7 @@ public class OrderLine {
 	private double price;
 	
 	/**
-	 * Constructor for the orderLine obejct
+	 * Constructor for the orderLine object
 	 * @param lineNumber is the serial number of the order
 	 * @param sandwich is the sandwich object
 	 * @param price is the price of the order
@@ -31,7 +31,7 @@ public class OrderLine {
 	}
 	
 	/**
-	 * To string method for the contents of an orderline.
+	 * To string method for the contents of an order line.
 	 * @return the string format of an order
 	 */
 	@Override
@@ -39,6 +39,7 @@ public class OrderLine {
 		return Integer.toString(lineNumber) + " " 
 				+ sandwich.toString();	
 	}
+	
 	/**
 	 * Setter method for lineNumber
 	 * @param n is the new lineNumber
