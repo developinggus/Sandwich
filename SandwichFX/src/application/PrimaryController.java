@@ -67,7 +67,8 @@ public class PrimaryController {
     	//change image to URI instead of URL in-case the picture is taken down.
     	if(selection.equals("Chicken")) {
     		sandwich = new Chicken();
-    		Image im = new Image("https://cdn.cnn.com/cnnnext/dam/assets/200522115738-20200522-kfc-chicken-sandwich-super-tease.jpg");
+    		//Image im = new Image("https://cdn.cnn.com/cnnnext/dam/assets/200522115738-20200522-kfc-chicken-sandwich-super-tease.jpg");
+    		Image im = new Image("file:chicken.jpg");
     		sandwichPic.setImage(im);
     		ingredientListView.getItems().clear();
     		ingredientListView.getItems().addAll(new Chicken().getIngredients());
@@ -75,16 +76,18 @@ public class PrimaryController {
 
     	if(selection.equals("Fish")) {
     		sandwich = new Fish();
-    		Image im = new Image("https://showmars.com/img/menu/FishSandwich-675x456.png");
-    		sandwichPic.setImage(im);
+    		//Image im = new Image("https://showmars.com/img/menu/FishSandwich-675x456.png");
+    		Image im2 = new Image("file:fish.jpg");
+    		sandwichPic.setImage(im2);
     		ingredientListView.getItems().clear();
     		ingredientListView.getItems().addAll(new Fish().getIngredients());
     	}
 
     	if(selection.equals("Beef")) {
     		sandwich = new Beef();
-    		Image im = new Image("https://www.foxvalleyfoodie.com/wp-content/uploads/2018/01/arbys-roast-beef.jpg");
-    		sandwichPic.setImage(im);
+    		//Image im = new Image("https://www.foxvalleyfoodie.com/wp-content/uploads/2018/01/arbys-roast-beef.jpg");
+    		Image im3 = new Image("file:roast_beef.jpg");
+    		sandwichPic.setImage(im3);
     		ingredientListView.getItems().clear();
     		ingredientListView.getItems().addAll(new Beef().getIngredients());
 
@@ -187,7 +190,8 @@ public class PrimaryController {
 					"Mushrooms", "Spinach", "Pickles", "Provolone", "American", "Swiss");
 
 		extraIngredients.getItems().addAll(addOnToppings);
-		Image im = new Image("https://cdn.cnn.com/cnnnext/dam/assets/200522115738-20200522-kfc-chicken-sandwich-super-tease.jpg");
+		//Image im = new Image("https://cdn.cnn.com/cnnnext/dam/assets/200522115738-20200522-kfc-chicken-sandwich-super-tease.jpg");
+		Image im = new Image("file:chicken.jpg");
 		sandwichPic.setImage(im);
 	}
 
